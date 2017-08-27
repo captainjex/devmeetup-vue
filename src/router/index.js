@@ -30,6 +30,7 @@ export default new Router({
     },
     {
       path: '/meetups/:id',
+      props: true,
       name: 'ShowMeetup',
       component: ShowMeetup
     },

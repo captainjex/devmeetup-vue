@@ -36,12 +36,9 @@
 
 <script>
 export default {
-  data () {
-    return {
-      meetups: [
-        { imageUrl: 'http://4.bp.blogspot.com/-oil8KfzeC4o/TlAZz20Y3KI/AAAAAAAAEMk/B8axSvcY34g/s1600/jakarta-pictures.jpg', id: 'asdf', title: 'Meetup di Jakarta' },
-        { imageUrl: 'https://crushingfromthehigh.files.wordpress.com/2013/01/lowongan-pekerjaan-jakarta3.jpg', id: 'asdffadfsf', title: 'Meetup di Bandung' }
-      ]
+  computed: {
+    meetups () {
+      return this.$store.getters.featuredMeetups
     }
   },
   methods: {

@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import * as firebase from 'firebase'
 
 Vue.use(Vuex)
 
@@ -23,28 +24,62 @@ export const store = new Vuex.Store({
         description: 'ini bandung men!!!!'
       }
     ],
-    user: {
-      id: 'asdfajshfljkasdf',
-      registeredMeetups: ['asdffadfsf']
-    }
+    user: null
   },
   mutations: {
-    createMeetup (state, payLoad) {
-      state.loadedMeetups.push(payLoad)
+    createMeetup (state, payload) {
+      state.loadedMeetups.push(payload)
+    },
+    setUser (state, payload) {
+      state.user = payload
     }
   },
   actions: {
-    createMeetup ({commit}, payLoad) {
+    createMeetup ({commit}, payload) {
       const meetup = {
-        title: payLoad.title,
-        location: payLoad.location,
-        imageUrl: payLoad.imageUrl,
-        description: payLoad.description,
-        date: payLoad.date,
+        title: payload.title,
+        location: payload.location,
+        imageUrl: payload.imageUrl,
+        description: payload.description,
+        date: payload.date,
         id: 'asdfasdfasdf'
       }
       // reach out to firebase and store it
       commit('createMeetup', meetup)
+    },
+    signUserUp ({commit}, payload) {
+      firebase.auth().createUserWithEmailAndPassword(payload.email, payload.password)
+        .then(
+          user => {
+            const newUser = {
+              id: user.uid,
+              registeredMeetups: []
+            }
+            commit('setUser', newUser)
+          }
+        )
+        .catch(
+          error => {
+            console.log(error)
+          }
+        )
+    },
+    signUserIn ({commit}, payload) {
+      firebase.auth().signInWithEmailAndPassword(payload.email, payload.password)
+        .then(
+          user => {
+            const newUser = {
+              id: user.uid,
+              registeredMeetups: []
+            }
+            commit('setUser', newUser)
+          }
+        )
+        .catch(
+          error => {
+            console.log(error)
+          }
+        )
     }
   },
   getters: {
@@ -62,6 +97,9 @@ export const store = new Vuex.Store({
           return meetup.id === meetupId
         })
       }
+    },
+    user (state) {
+      return state.user
     }
   }
 })

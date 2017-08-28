@@ -10,7 +10,7 @@ export const store = new Vuex.Store({
         imageUrl: 'http://4.bp.blogspot.com/-oil8KfzeC4o/TlAZz20Y3KI/AAAAAAAAEMk/B8axSvcY34g/s1600/jakarta-pictures.jpg',
         id: 'asdf',
         title: 'Meetup di Jakarta',
-        date: '2017-07-17',
+        date: new Date(),
         location: 'Jakarta',
         description: 'ini jakarta men!!!!'
       },
@@ -18,7 +18,7 @@ export const store = new Vuex.Store({
         imageUrl: 'https://crushingfromthehigh.files.wordpress.com/2013/01/lowongan-pekerjaan-jakarta3.jpg',
         id: 'asdffadfsf',
         title: 'Meetup di Bandung',
-        date: '2017-07-20',
+        date: new Date(),
         location: 'Bandung',
         description: 'ini bandung men!!!!'
       }

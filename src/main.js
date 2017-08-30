@@ -8,12 +8,14 @@ import DateFilter from './filters/date'
 import { store } from './store'
 
 import AlertComponent from './components/Shared/Alert.vue'
+import EditMeetupDetailsDialog from './components/Meetup/EditDetailsDialog.vue'
 
 Vue.use(Vuetify)
 Vue.config.productionTip = false
 
 Vue.filter('date', DateFilter)
 Vue.component('app-alert', AlertComponent)
+Vue.component('app-edit-meetup-details-dialog', EditMeetupDetailsDialog)
 
 /* eslint-disable no-new */
 new Vue({
